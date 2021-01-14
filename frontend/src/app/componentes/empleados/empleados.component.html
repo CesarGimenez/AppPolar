@@ -1,4 +1,3 @@
-<div class="fondo">
 <div class="container">
     <div class="row">
         <div class="col s5">
@@ -17,13 +16,13 @@
                                 <h6 class="card-subtitle mb-2 text-muted">Fecha de nacimiento</h6>
                                 <input type="date" formControlName="fechanac" id="fecha" [(ngModel)]="empleadoService.selectedEmpleado.fechanac"
                                 (change)="obtenerFecha()"><br>
-                                <small *ngIf="!valido" class="text-danger">{{message}}</small>
+                                <small *ngIf="!fechavalida" class="text-danger">{{message}}</small>
                             </div>
                             <div class="form-group col s12">
                                 <h6 class="card-subtitle mb-2 text-muted">Email (*)</h6>
                                 <input class="form-control" type="email" formControlName="email" placeholder="Ingresar email" [(ngModel)]="empleadoService.selectedEmpleado.email" 
                                 (keyup)="emailDuplicado()">
-                                <small *ngIf="!valido" class="text-danger">{{emailduplicado}} <br></small>
+                                <small *ngIf="!emailvalido" class="text-danger">{{emailduplicado}} <br></small>
                                 <small *ngIf="form.get('email').hasError('email') && form.get('email').touched" class="text-danger">El email no es valido</small>
                             </div>
                             <div class="form-group col">
@@ -31,7 +30,7 @@
                                 <input class="form-control" type="password" (keyup)="confirmPass()" formControlName="pass" placeholder="Ingresar contraseña" [(ngModel)]="empleadoService.selectedEmpleado.pass">
                                 <small *ngIf="form.get('pass').hasError('minlength') && form.get('pass').touched" class="text-danger">La contraseña debe ser minimo de 6 caracteres <br></small>
                                 <input class="form-control" type="password" (keyup)="confirmPass()" formControlName="confirmpass" placeholder="Confirme contraseña" [(ngModel)]="empleadoService.selectedEmpleado.confirmpass">
-                                <small *ngIf="!valido && form.get('confirmpass').touched" class="text-danger">{{passmessage}} <br></small>
+                                <small *ngIf="!passvalido && form.get('confirmpass').touched" class="text-danger">{{passmessage}} <br></small>
                             </div>
                             <div class="form-group col s12">
                                 <h6 class="card-subtitle mb-2 text-muted">Tipo de usuario (*)</h6>
@@ -51,7 +50,7 @@
                             <div class="card-action">
                                 <div class="col s12 text-center">
                                     <small class="text-muted">todos los campos son obligatorios <br><br></small>
-                                    <button type="submit" [disabled]="form.invalid||!valido" class="btn btn-primary" style="margin-right: 10px;"><i class="far fa-save"></i> Guardar</button>
+                                    <button type="submit" [disabled]="form.invalid||!emailvalido||!fechavalida||!passvalido" class="btn btn-primary" style="margin-right: 10px;"><i class="far fa-save"></i> Guardar</button>
                                     <button type="button" class="btn btn-primary" (click)="resetForm()"><i class="fas fa-broom"></i> Limpiar</button>
                                 </div>
                     
@@ -85,5 +84,4 @@
            </div>
          </div>
     </div>
-</div>
 </div>

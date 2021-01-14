@@ -20,7 +20,9 @@ export class EmpleadosComponent implements OnInit {
   }
   filterEmpleado = '';
   p: number = 1;
-  public valido = true;
+  public emailvalido = true;
+  public fechavalida = true;
+  public passvalido = true;
   public message = '';
   Empleado = [];
   public emailduplicado = '';
@@ -78,6 +80,8 @@ export class EmpleadosComponent implements OnInit {
 
   editEmpleado(empleado: Empleado){
     this.empleadoService.selectedEmpleado = empleado;
+    this.obtenerFecha();
+    this.confirmPass();
   }
 
   deleteEmpleado(_id: string){
@@ -87,6 +91,7 @@ export class EmpleadosComponent implements OnInit {
       this.toast.info('Empleado eliminado', 'Notificacion',{
         timeOut: 1500
       });
+      this.resetForm();
     })
   }
 
@@ -94,6 +99,9 @@ export class EmpleadosComponent implements OnInit {
     if(this.form){
       this.form.reset();
       this.getEmpleados();
+      this.emailvalido = true;
+      this.fechavalida = true;
+      this.passvalido = true;
     }
   }
 
@@ -105,27 +113,25 @@ export class EmpleadosComponent implements OnInit {
 
     if(edad1 <= 0){
         this.message = "fecha no valida";
-        this.valido = false;
+        this.fechavalida = false;
     } else if(edad1 < 18){
         this.message = "Es menor de edad";
-        this.valido = false;
+        this.fechavalida = false;
     } else if (edad1 > 60){
         this.message = "Es viejo";
-        this.valido = false;
+        this.fechavalida = false;
     } else {
         this.message ="";
-        this.valido = true;
+        this.fechavalida = true;
     }
     console.log(this.message);
 }
   emailDuplicado(){
-    this.valido= true;
     const busqueda = this.Empleado.find(letter =>  letter.email === this.form.value.email);
     if(busqueda == undefined){
-      this.valido = true;
-      this.emailduplicado = "";
+      this.emailvalido = true;
     } else {
-      this.valido = false;
+      this.emailvalido = false;
       this.emailduplicado = "Correo en uso";
     }
   }
@@ -135,10 +141,10 @@ export class EmpleadosComponent implements OnInit {
     if(pass != confirmpass){
       console.log("no son iguales")
       this.passmessage = "Las contraseñas no coinciden";
-      this.valido = false;
+      this.passvalido = false;
     } else {
       this.passmessage = "";
-      this.valido = true;
+      this.passvalido = true;
     }
   }
 }

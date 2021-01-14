@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card shadow-sm rounded" style="margin-top: 10px; padding-top: 10px; width: 25em;">
+                <h4 class="container card-title" style="text-align: center;">Producto nuevo</h4>
+                <div class="card-body">
+                    <form [formGroup]="form" (ngSubmit)="addProducto($event)">
+                        <div class="form-group col s12">
+                            <h6 class="card-subtitle mb-2 text-muted">Producto (*)</h6>
+                            <input formControlName="nombre" class="form-control" type="text" placeholder="Ingresar nombre del producto"
+                            [(ngModel)]="productosService.selectedProducto.nombre">
+                            <small *ngIf="form.get('nombre').hasError('maxlength')" class="text-danger">El nombre es muy largo <br></small>
+                            <small *ngIf="form.get('nombre').hasError('pattern')" class="text-danger">No se admiten caracteres especiales</small>
+                        </div>
+                        <div class="form-group col s12">
+                            <h6 class="card-subtitle mb-2 text-muted">Descripcion (*)</h6>
+                            <textarea formControlName="descripcion" cols="20" rows="5" class="form-control" 
+                            [(ngModel)]="productosService.selectedProducto.descripcion" placeholder="Ingresar breve descripcion del producto"></textarea>
+                            <small *ngIf="form.get('descripcion').hasError('maxlength')" class="text-danger">Descripcion muy larga <br></small>
+                        </div>
+                        <div class="form-group col">
+                            <h6 class="card-subtitle mb-2 text-muted">Imagen</h6>
+                            <input formControlName="foto" class="form-control" type="text" placeholder="Ingrese la URL de la imagen" [(ngModel)]="productosService.selectedProducto.foto">
+                        </div>
+                        <div class="form-group col">
+                            <h6 class="card-subtitle mb-2 text-muted">Precio (*)</h6>
+                            <input formControlName="precio" class="form-control" type="number" [(ngModel)]="productosService.selectedProducto.precio">
+                            <small *ngIf="form.get('precio').hasError('min') && form.get('precio').touched" class="text-danger">No se admiten precios menores o iguales a 0<br></small>
+                            <small *ngIf="form.get('precio').hasError('max')" class="text-danger">Se excede del precio maximo permitido<br></small>
+                        </div>
+                        <div class="form-group col s12">
+                            <h6 class="card-subtitle mb-2 text-muted">Tipo de producto (*)</h6>
+                            <select formControlName="categoria" aria-placeholder="Seleccionar categoria" [(ngModel)]="productosService.selectedProducto.categoria">
+                                <option value="Cerveceria">Cerveceria</option>
+                                <option value="Alimentos">Alimentos</option>
+                                <option value="Otros">Otros</option>
+                            </select>
+                        </div>
+                        <div class="card-action">
+                            <div class="col s12 text-center">
+                                <small class="text-muted">todos los campos son obligatorios <br><br></small>
+                                <button type="submit"
+                                    class="btn btn-primary" [disabled]="form.invalid" style="margin-right: 10px;"><i class="far fa-save"></i>
+                                    Guardar</button>
+                                <button type="button" (click)="resetForm()" class="btn btn-primary"><i
+                                        class="fas fa-broom"></i> Limpiar</button>
+                            </div>
+
+                            <input class="form-control" type="hidden" formControlName="_id" [(ngModel)]="productosService.selectedProducto._id">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card shadow-sm container" style="margin-top: 10px;">
+             <table class="table">
+                <thead>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Eliminar/Editar</th>
+                </thead>
+                <tbody>
+                    <tr scope="row" *ngFor= "let producto of productosService.Producto | paginate: {itemsPerPage: 10, currentPage: p}">
+                        <td>{{producto.nombre}}</td>
+                        <td>{{producto.categoria}}</td>
+                        <td>${{producto.precio}}</td>
+                        <td><button (click)="deleteProducto(producto._id)" class="btn btn-primary mr-2"><i class="far fa-trash-alt"></i></button>
+                            <button (click)="editProducto(producto)" type="button" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls (pageChange) = "p = $event"></pagination-controls>
+           </div>
+         </div>
+    </div>
+</div>

@@ -9,13 +9,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { EmpleadosComponent } from './componentes/empleados/empleados.component';
 import { FiltroPipe } from './pipes/filtro.pipe';
+import { AppRoutingModule } from './app-routing.module';
+import { InicioComponent } from './componentes/inicio/inicio.component';
+import { ProductosComponent } from './componentes/productos/productos.component';
+import { OpProductosComponent } from './componentes/op-productos/op-productos.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     EmpleadosComponent,
-    FiltroPipe
+    FiltroPipe,
+    InicioComponent,
+    ProductosComponent,
+    OpProductosComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +32,7 @@ import { FiltroPipe } from './pipes/filtro.pipe';
     NgxPaginationModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

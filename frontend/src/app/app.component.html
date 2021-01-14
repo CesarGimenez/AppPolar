@@ -1,6 +1,17 @@
 <nav class="navbar navbar-dark bg-primary">
   <div class="container">
       <a href="/" class="navbar-brand"><img src="../assets/logopolar.png" class="img-fluid" alt="" style="height: 50px;"></a>
+      <ul class="navbar-nav ml-auto d-flex flex-row">
+        <li class="nav-item">
+          <a class="nav-link mr-3 font-weight-bold" routerLink="/inicio"><i class="fas fa-home"></i> inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mr-3 font-weight-bold" routerLink="/empleados"><i class="fas fa-hard-hat"></i> Empleados</a>
+        </li>  
+        <li class="nav-item">
+          <a class="nav-link mr-3 font-weight-bold" routerLink="/productos"><i class="fas fa-beer"></i> Productos</a>
+        </li>
+      </ul>
   </div>
 </nav>
-<app-empleados></app-empleados>
+<router-outlet></router-outlet>

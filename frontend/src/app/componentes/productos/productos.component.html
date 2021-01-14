@@ -1,0 +1,25 @@
+<div class="fondo">
+    <div class="container">
+        <div class="d-flex flex-row">
+            <button class="btn btn-primary mt-4" routerLink="/productos/operaciones">Nuevo producto/Editar</button>
+            <input type="text" class="form-control mt-4 ml-4" name="filterProducto" [(ngModel)]=filterProducto placeholder="Buscar por nombre">
+        </div>    
+    <div class="row">
+        <div class="col-lg-3" *ngFor="let producto of productosService.Producto | filtro:filterProducto">
+            <div class="card mb-2 mt-2 text-center d-flex animate__animated animate__slideInUp" style="height: 500px;">
+               <div class="card-header">
+                <h4 class="font-weight-bold ">{{producto.nombre}}</h4>
+               </div>
+               <img src="{{producto.foto}}" class="card-img-top ">
+               <div class="card-body">
+                <p class="font-italic">{{producto.descripcion}}</p>
+                <p class="lead">$ {{producto.precio}}</p>
+               </div>
+               <div class="card-footer">
+               <a href="" class="btn btn-info"> Buy now </a>
+               </div>
+           </div>
+       </div>   
+    </div>
+</div>
+</div>
