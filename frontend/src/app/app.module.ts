@@ -13,6 +13,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { ProductosComponent } from './componentes/productos/productos.component';
 import { OpProductosComponent } from './componentes/op-productos/op-productos.component';
+import { SidebarComponent } from './componentes/sidebar/sidebar.component';
+import { ClientesComponent } from './componentes/clientes/clientes.component';
+import { LoginComponent } from './componentes/login/login.component';
 
 
 @NgModule({
@@ -22,7 +25,10 @@ import { OpProductosComponent } from './componentes/op-productos/op-productos.co
     FiltroPipe,
     InicioComponent,
     ProductosComponent,
-    OpProductosComponent
+    OpProductosComponent,
+    SidebarComponent,
+    ClientesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

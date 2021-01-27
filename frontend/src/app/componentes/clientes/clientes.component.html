@@ -1,0 +1,86 @@
+<div class="wrapper row">
+    <app-sidebar></app-sidebar>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="header-title text-light">Seccion de clientes</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item" routerLink="/clientes">Listado de clientes</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card shadow-sm rounded" style="margin-top: 10px; padding-top: 10px; width: 25em;">
+                    <div class="card-body">
+                        <form [formGroup]="form" (ngSubmit)="addCliente($event)">
+                                <div class="form-group col s12">
+                                    
+                                    <h6 class="card-subtitle mb-2 text-muted">Nombre (*)</h6>
+                                    <input class="form-control" type="text" formControlName="nombre" placeholder="Ingresar nombre" [(ngModel)]="ClienteService.selectedCliente.nombre">
+                                    <small *ngIf="form.get('nombre').hasError('maxlength')" class="text-danger">El nombre es muy largo <br></small>
+                                </div>
+                                <div class="form-group col s12">
+                                    <h6 class="card-subtitle mb-2 text-muted">DNI</h6>
+                                    <input type="text" formControlName="dni" id="dni" [(ngModel)]="ClienteService.selectedCliente.dni"><br>
+                                </div>
+                                <div class="form-group col s12">
+                                    <h6 class="card-subtitle mb-2 text-muted">Email (*)</h6>
+                                    <input class="form-control" type="email" formControlName="email" placeholder="Ingresar email" [(ngModel)]="ClienteService.selectedCliente.email" >
+                                    <small *ngIf="form.get('email').hasError('email') && form.get('email').touched" class="text-danger">El email no es valido</small>
+                                </div>
+                                <div class="form-group col">
+                                    <h6 class="card-subtitle mb-2 text-muted">Numero (*)</h6>
+                                    <input class="form-control" type="text" formControlName="numero" placeholder="Ingresar contraseña" [(ngModel)]="ClienteService.selectedCliente.numero">
+                                    <small *ngIf="form.get('numero').hasError('pattern')" class="text-danger">No se admiten letras</small>
+                                </div>
+                                <div class="form-group col s12">
+                                    <h6 class="card-subtitle mb-2 text-muted"><i class="fab fa-facebook-f"></i> Facebook</h6>
+                                    <input class="form-control" type="text" formControlName="facebook" placeholder="Ingresar facebook" [(ngModel)]="ClienteService.selectedCliente.facebook">
+                                </div>
+                                <div class="form-group col s12">
+                                    <h6 class="card-subtitle mb-2 text-muted"><i class="fab fa-instagram"></i> Instagram</h6>
+                                    <input class="form-control" type="text" formControlName="instagram" placeholder="Ingresar instagram" [(ngModel)]="ClienteService.selectedCliente.instagram">
+                                </div>
+                                <div class="form-group col s12">
+                                    <h6 class="card-subtitle mb-2 text-muted"><i class="fab fa-twitter"></i> Twitter</h6>
+                                    <input class="form-control" type="text" formControlName="twitter" placeholder="Ingresar twitter" [(ngModel)]="ClienteService.selectedCliente.twitter">
+                                </div>
+            
+                                <div class="card-action">
+                                    <div class="col s12 text-center">
+                                        <small class="text-muted">Algunos campos son obligatorios <br><br></small>
+                                        <button type="submit" [disabled]="form.invalid" class="btn btn-primary" style="margin-right: 10px;"><i class="far fa-save"></i> Guardar</button>
+                                        <button type="button" class="btn btn-primary" (click)="resetForm()"><i class="fas fa-broom"></i> Limpiar</button>
+                                    </div>
+                        
+                                    <input class="form-control" type="hidden" formControlName="_id" [(ngModel)]="ClienteService.selectedCliente._id">
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7" style="width: 50em;">
+                <div class="card shadow-sm container" style="margin-top: 10px;">
+                 <table class="table">
+                    <thead>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Numero</th>
+                        <th scope="col">Eliminar/Editar</th>
+                    </thead>
+                    <tbody>
+                        <tr scope="row" *ngFor= "let cliente of ClienteService.Cliente | paginate: {itemsPerPage: 8, currentPage: p}">
+                            <td>{{cliente.nombre}}</td>
+                            <td>{{cliente.numero}}</td>
+                            <td><button (click)="deleteCliente(cliente._id)" class="btn btn-primary mr-2"><i class="far fa-trash-alt"></i></button>
+                                <button (click)="editCliente(cliente)" class="btn btn-primary"><i class="far fa-edit"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination-controls (pageChange) = "p = $event"></pagination-controls>
+               </div>
+             </div>
+        </div>
+    </div>
+</div>

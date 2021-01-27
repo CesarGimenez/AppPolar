@@ -4,29 +4,21 @@ import { EmpleadosComponent } from './componentes/empleados/empleados.component'
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { ProductosComponent } from './componentes/productos/productos.component';
 import { OpProductosComponent } from './componentes/op-productos/op-productos.component';
+import { ClientesComponent } from './componentes/clientes/clientes.component';
+import { LoginComponent } from './componentes/login/login.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/empleados',
+    redirectTo: '/inicio',
     pathMatch: 'full'
   },
-  {
-    path: 'empleados',
-    component: EmpleadosComponent
-  },
-  {
-    path: 'inicio',
-    component: InicioComponent
-  },
-  {
-    path: 'productos',
-    component: ProductosComponent
-  },
-  {
-    path: 'productos/operaciones',
-    component: OpProductosComponent
-  }
+  {path: 'empleados', component: EmpleadosComponent},
+  {path: 'inicio', component: InicioComponent},
+  {path: 'productos', component: ProductosComponent},
+  {path: 'productos/operaciones', component: OpProductosComponent},
+  {path: 'clientes', component: ClientesComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

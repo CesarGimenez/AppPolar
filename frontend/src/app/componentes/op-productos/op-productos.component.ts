@@ -30,6 +30,7 @@ export class OpProductosComponent implements OnInit {
       descripcion: new FormControl('', [Validators.required, Validators.maxLength(100)], ),
       precio: new FormControl('', [Validators.required, Validators.min(1),Validators.max(100)]),
       foto: new FormControl('', [Validators.required]),
+      stock: new FormControl('', [Validators.required,Validators.min(1)]),
       categoria: new FormControl('', [Validators.required]),
     });
   }

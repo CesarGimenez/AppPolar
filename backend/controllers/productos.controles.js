@@ -8,20 +8,37 @@ productosctrl.getProductos = async (req, res) => {
 }
 
 productosctrl.createProducto = async(req,res)=>{
+    let imagen_path = req.files.foto.path;
+    let name = imagen_path.split('\\');
+    let imagen_name = name[2];
     const nuevoProducto = new productos({
         nombre: req.body.nombre,
         descripcion: req.body.descripcion,
         precio: req.body.precio,
         categoria: req.body.categoria,
-        foto: req.body.foto,
+        foto: imagen_name,
+        stock: req.body.stock,
     });
     await nuevoProducto.save();
-    res.json("registrado");
+    res.send({producto: nuevoProducto});
 } 
 
 productosctrl.getProducto = async(req,res) =>{
     const producto = await productos.findById(req.params.id);
     res.json(producto);
+}
+productosctrl.getProductoImg  = async(req,res) =>{
+    let img = req.params['img'];
+    productos.find({foto: new RegExp(img, 'i')}, (err, producto_img)=>{
+        if(err){
+            res.send({message:'no se registro'})
+        } else {
+            if(producto_img){
+                res.send({producto: producto_img})
+                
+            }
+        }
+    })
 }
 productosctrl.editProducto = async(req,res) =>{
     const productoupdate = {

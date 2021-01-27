@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Empleado } from '../models/empleado';
-import { EmptyError } from 'rxjs';
+import { EmptyError, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +10,12 @@ export class EmpleadoService {
 
   selectedEmpleado: Empleado;
   Empleado: Empleado[];
+  public user;
+  public token;
+  public identidad;
   constructor(private http: HttpClient) { 
     this.selectedEmpleado = new Empleado();
+    this.user = new Empleado();
    }
 
   getEmpleados(){
@@ -30,5 +34,31 @@ export class EmpleadoService {
   }
   getEmpleado(email: string){
     
+  }
+  Login(user, gettoken = null):Observable<any>{
+    let json = user;
+    if(gettoken != null){
+      gettoken = true;
+    }
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/api/empleados/login', json, {headers:headers})
+  }
+  getToken():Observable<any>{
+    let token = localStorage.getItem('token');
+    if(token){
+      this.token = token;
+    } else{
+      this.token= null
+    }
+    return this.token;
+  }
+  getIdentidad():Observable<any>{
+    let identidad = JSON.parse(localStorage.getItem('identidad'));
+    if(identidad){
+      this.identidad = identidad;
+    } else{
+      this.identidad= null
+    }
+    return this.identidad;
   }
 }

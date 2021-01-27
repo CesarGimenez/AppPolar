@@ -1,0 +1,28 @@
+.title{
+    margin-top: 50px;
+    text-align: center;
+    position: relative;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.card{
+    margin-top: 50px;
+    position: relative;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    border-radius: 20px;
+}
+
+.input{
+    background: transparent;
+    border-bottom: 2px solid;
+    border-left: 2px solid;
+}
+
+.btn{
+    width: 100%;
+    border-radius: 20px;
+}
