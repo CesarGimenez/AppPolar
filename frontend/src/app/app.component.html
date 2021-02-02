@@ -1,14 +1,21 @@
 <nav class="navbar navbar-dark bg-primary">
       <a class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-      (click)="MostrarMenu()"><i class="fas fa-bars"></i></a>
+      ><i class="fas fa-bars"></i></a>
       <a href="/" class="navbar-brand"><img src="../assets/logopolar.png" class="img-fluid" alt="" style="height: 50px;"></a>
       <ul class="navbar-nav ml-auto d-flex flex-row">
         <li class="nav-item">
           <a class="nav-link mr-3 font-weight-bold" routerLink="/inicio"><i class="fas fa-home"></i> inicio</a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link mr-3 font-weight-bold" routerLink="/login"><i class="fas fa-home"></i> iniciar sesion</a>    
-        </li>
+        <ng-container *ngIf="!empleadoService.getToken(); else logout" >
+          <li class="nav-item ">
+            <a class="nav-link mr-3 font-weight-bold" routerLink="/login"><i class="fas fa-door-closed"></i> iniciar sesion</a>    
+          </li>
+        </ng-container>
+        <ng-template #logout>
+          <li class="nav-item ">
+            <a class="nav-link mr-3 font-weight-bold" (click)="empleadoService.Logout()" routerLink="/login"><i class="fas fa-door-open"></i> Cerrar sesion</a>    
+          </li>
+        </ng-template>
       </ul>
 </nav>
 

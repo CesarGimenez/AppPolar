@@ -1,0 +1,39 @@
+<div class="wrapper row">
+    <app-sidebar></app-sidebar>
+    <div class="container">
+        <div class="header">
+            <h1 class="header-title text-light">Seccion de ventas</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item" routerLink="/ventas">Listado de ventas</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card shadow-sm container" style="margin-top: 10px;">
+                    <div class="col-lg-5">
+                        <button class="btn btn-primary mb-2 mt-2" routerLink="/ventas/registrar">Nueva venta</button>
+                    </div>
+                 <table class="table">
+                    <thead>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Vendedor</th>
+                        <th scope="col">Opciones</th>
+                    </thead>
+                    <tbody>
+                        <tr scope="row" *ngFor= "let venta of ventaslist | paginate: {itemsPerPage: 15, currentPage: p}">
+                            <td>{{venta.idcliente.nombre}}</td>
+                            <td>{{venta.fecha | date: 'MMM d, y, h:mm a'}}</td>
+                            <td>{{venta.idempleado.nombre}} ({{venta.idempleado.categoria}})</td>
+                            <td><button class="btn btn-primary">Detalle de venta</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination-controls (pageChange) = "p = $event"></pagination-controls>
+               </div>
+             </div>
+        </div>
+    </div>
+</div>

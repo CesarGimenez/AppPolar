@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosService } from '../../services/productos.service';
 import { Productos } from "../../models/productos";
+import { EmpleadoService } from "../../services/empleado.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-productos',
@@ -10,11 +12,20 @@ import { Productos } from "../../models/productos";
 })
 export class ProductosComponent implements OnInit {
 
-  constructor(public productosService: ProductosService) { }
+  public identidad;
+  public token;
+
+  constructor(public productosService: ProductosService, private empleadoService: EmpleadoService, private router:Router) { 
+    this.identidad = empleadoService.getIdentidad();
+    this.token = empleadoService.getToken();
+   }
 
   filterProducto = '';
 
   ngOnInit(): void {
+    if(!this.token){
+      this.router.navigate(['inicio']);
+    }
     this.getProductos();
   }
 

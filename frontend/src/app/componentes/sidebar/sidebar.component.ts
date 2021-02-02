@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EmpleadoService } from "src/app/services/empleado.service";
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  public identidad;
+  public hora;
+
+  constructor(private empleadoService: EmpleadoService) { 
+    this.identidad = empleadoService.getIdentidad();
+    
+   }
 
   ngOnInit(): void {
+    console.log(this.identidad);
+    this.hora = moment().format('LT');
   }
 
 }

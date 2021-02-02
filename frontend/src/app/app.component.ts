@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EmpleadoService } from './services/empleado.service';
 
 @Component({
   selector: 'app-root',
@@ -6,9 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
 
-  MostrarMenu(){
-    
+  public identidad;
+  public token;
+  constructor(public empleadoService: EmpleadoService){
+    this.identidad = empleadoService.getIdentidad();
+    this.token = empleadoService.getToken();
   }
+
 }

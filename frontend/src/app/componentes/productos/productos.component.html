@@ -11,7 +11,7 @@
             </nav>
         </div>
         <div class="d-flex flex-row">
-            <button class="btn btn-primary mt-4" routerLink="/productos/operaciones">Nuevo producto/Editar</button>
+            <button class="btn btn-primary mt-4" *ngIf="identidad.categoria == 'Gerente'" routerLink="/productos/operaciones">Nuevo producto/Editar</button>
             <input type="text" class="form-control mt-4 ml-4" name="filterProducto" [(ngModel)]=filterProducto placeholder="Buscar por nombre">
         </div>    
     <div class="row">
@@ -20,7 +20,7 @@
                <div class="card-header">
                 <h4 class="font-weight-bold ">{{producto.nombre}}</h4>
                </div>
-               <img [src]="'http://localhost:3000/uploads/' + producto.foto" class="card-img-top ">
+               <img src="{{producto.foto}}" class="card-img-top ">
                <div class="card-body">
                 <p class="font-italic">{{producto.descripcion}}</p>
                 <p class="lead">$ {{producto.precio}}</p>

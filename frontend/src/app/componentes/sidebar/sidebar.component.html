@@ -2,12 +2,18 @@
 <div class="wrapper">
   <div class="d-flex" id="wrapper">
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading"> -. Menu </div>
+      <div class="sidebar-heading ml-2 p-4"> Usuario: <br>
+        <p class="font-weight-bold">{{identidad.nombre}}</p>
+        Categoria:
+        <p class="text-muted">{{identidad.categoria}}</p>
+        Hora: {{hora}}
+        </div>
       <div class="list-group list-group-flush">
         <a class="list-group-item list-group-item-action bg-light" routerLink="/inicio"><i class="fas fa-home"></i> inicio</a>
-        <a class="list-group-item list-group-item-action bg-light" routerLink="/empleados"><i class="fas fa-hard-hat"></i> Empleados</a>
+        <a class="list-group-item list-group-item-action bg-light" *ngIf="identidad.categoria == 'Gerente'" routerLink="/empleados"><i class="fas fa-hard-hat"></i> Empleados</a>
         <a class="list-group-item list-group-item-action bg-light" routerLink="/productos"><i class="fas fa-beer"></i> Productos</a>
         <a class="list-group-item list-group-item-action bg-light" routerLink="/clientes"><i class="fas fa-user-friends"></i> Clientes</a>
+        <a class="list-group-item list-group-item-action bg-light" routerLink="/ventas"><i class="fas fa-truck-loading"></i> Ventas</a>
       </div>
     </div>
   </div>

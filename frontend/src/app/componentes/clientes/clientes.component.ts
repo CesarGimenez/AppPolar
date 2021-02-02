@@ -4,6 +4,8 @@ import { FormControl, NgForm, FormGroup, Validators } from "@angular/forms";
 import { Cliente } from "../../models/clientes";
 import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
+import { EmpleadoService } from 'src/app/services/empleado.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-clientes',
@@ -14,13 +16,19 @@ import * as moment from 'moment';
 export class ClientesComponent implements OnInit {
 
   form: FormGroup;
+  public token;
 
-  constructor(public ClienteService: ClienteService, private toast: ToastrService) { 
+  constructor(public ClienteService: ClienteService, private toast: ToastrService,private empleadoService:EmpleadoService, 
+    private router:Router) { 
     this.buildForm();
+    this.token = empleadoService.getToken();
   }
   p: number = 1;
 
   ngOnInit(): void {
+    if(!this.token){
+      this.router.navigate(['inicio']);
+    }
     this.getClientes();
   }
 
@@ -30,7 +38,8 @@ export class ClientesComponent implements OnInit {
       nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-zA-Z ]+$/)]),
       dni: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      numero: new FormControl('', [Validators.required, Validators.pattern(/^[1-9]+$/)]),
+      numero: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/)]),
+      ubicacion: new FormControl('', [Validators.required]),
       facebook: new FormControl(''),
       instagram: new FormControl(''),
       twitter: new FormControl(''),

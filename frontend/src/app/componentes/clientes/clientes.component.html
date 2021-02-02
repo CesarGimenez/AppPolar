@@ -22,18 +22,22 @@
                                     <small *ngIf="form.get('nombre').hasError('maxlength')" class="text-danger">El nombre es muy largo <br></small>
                                 </div>
                                 <div class="form-group col s12">
-                                    <h6 class="card-subtitle mb-2 text-muted">DNI</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-id-card"></i> DNI (*)</h6>
                                     <input type="text" formControlName="dni" id="dni" [(ngModel)]="ClienteService.selectedCliente.dni"><br>
                                 </div>
                                 <div class="form-group col s12">
-                                    <h6 class="card-subtitle mb-2 text-muted">Email (*)</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-envelope"></i> Email (*)</h6>
                                     <input class="form-control" type="email" formControlName="email" placeholder="Ingresar email" [(ngModel)]="ClienteService.selectedCliente.email" >
                                     <small *ngIf="form.get('email').hasError('email') && form.get('email').touched" class="text-danger">El email no es valido</small>
                                 </div>
                                 <div class="form-group col">
-                                    <h6 class="card-subtitle mb-2 text-muted">Numero (*)</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-phone"></i> Numero (*)</h6>
                                     <input class="form-control" type="text" formControlName="numero" placeholder="Ingresar contraseña" [(ngModel)]="ClienteService.selectedCliente.numero">
                                     <small *ngIf="form.get('numero').hasError('pattern')" class="text-danger">No se admiten letras</small>
+                                </div>
+                                <div class="form-group col">
+                                    <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-map-marker-alt"></i> Ubicacion (*)</h6>
+                                    <input class="form-control" type="text" formControlName="ubicacion" placeholder="Ingresar ubicacion" [(ngModel)]="ClienteService.selectedCliente.ubicacion">
                                 </div>
                                 <div class="form-group col s12">
                                     <h6 class="card-subtitle mb-2 text-muted"><i class="fab fa-facebook-f"></i> Facebook</h6>
@@ -41,16 +45,27 @@
                                 </div>
                                 <div class="form-group col s12">
                                     <h6 class="card-subtitle mb-2 text-muted"><i class="fab fa-instagram"></i> Instagram</h6>
-                                    <input class="form-control" type="text" formControlName="instagram" placeholder="Ingresar instagram" [(ngModel)]="ClienteService.selectedCliente.instagram">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">@</span>
+                                        </div> 
+                                        <input class="form-control" type="text" formControlName="instagram" placeholder="Ingresar instagram" [(ngModel)]="ClienteService.selectedCliente.instagram">
+                                    </div>
+                                   
                                 </div>
                                 <div class="form-group col s12">
                                     <h6 class="card-subtitle mb-2 text-muted"><i class="fab fa-twitter"></i> Twitter</h6>
-                                    <input class="form-control" type="text" formControlName="twitter" placeholder="Ingresar twitter" [(ngModel)]="ClienteService.selectedCliente.twitter">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">@</span>
+                                        </div> 
+                                        <input class="form-control" type="text" formControlName="twitter" placeholder="Ingresar twitter" [(ngModel)]="ClienteService.selectedCliente.twitter">
+                                    </div>
                                 </div>
             
                                 <div class="card-action">
                                     <div class="col s12 text-center">
-                                        <small class="text-muted">Algunos campos son obligatorios <br><br></small>
+                                        <small class="text-muted">Algunos campos son obligatorios (*)<br><br></small>
                                         <button type="submit" [disabled]="form.invalid" class="btn btn-primary" style="margin-right: 10px;"><i class="far fa-save"></i> Guardar</button>
                                         <button type="button" class="btn btn-primary" (click)="resetForm()"><i class="fas fa-broom"></i> Limpiar</button>
                                     </div>

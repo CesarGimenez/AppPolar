@@ -1,5 +1,5 @@
 export class Productos {
-    constructor(_id='', nombre='', descripcion='', precio=0, foto='', categoria='',stock=''){
+    constructor(_id='', nombre='', descripcion='', precio=0, foto='', categoria='',stock=0){
         this._id= _id;
         this.nombre= nombre;
         this.descripcion = descripcion,
@@ -14,5 +14,5 @@ export class Productos {
     precio: number;
     foto: string;
     categoria: string;
-    stock: string;
+    stock: number;
 }

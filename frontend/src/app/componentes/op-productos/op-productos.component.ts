@@ -3,6 +3,12 @@ import { ProductosService } from '../../services/productos.service';
 import { FormControl, NgForm, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from 'ngx-toastr';
 import { Productos } from "../../models/productos";
+import { EmpleadoService } from 'src/app/services/empleado.service';
+import { Router } from '@angular/router';
+
+interface HtmlInputEvent extends Event{
+  target: HTMLInputElement & EventTarget;
+}
 
 @Component({
   selector: 'app-op-productos',
@@ -13,13 +19,27 @@ import { Productos } from "../../models/productos";
 export class OpProductosComponent implements OnInit {
 
   form: FormGroup;
+  public file: File;
+  public imgSelect : string|ArrayBuffer;
+  public foto: '';
+  public identidad;
+  public token;
 
-  constructor(public productosService: ProductosService, private toast: ToastrService) { 
+  constructor(public productosService: ProductosService, private toast: ToastrService, private empleadoService: EmpleadoService,
+    private router: Router) { 
     this.buildForm();
+    this.identidad = empleadoService.getIdentidad();
+    this.token = empleadoService.getToken();
    }
    p: number = 1;
 
   ngOnInit(): void {
+    if(this.identidad.categoria !== 'Gerente'){
+      this.router.navigate(['inicio']);
+    }
+    if(!this.token){
+      this.router.navigate(['inicio']);
+    }
     this.getProductos();
   }
 
@@ -42,10 +62,19 @@ export class OpProductosComponent implements OnInit {
     })
   }
 
+  imgSelected(event: HtmlInputEvent){
+    if(event.target.files && event.target.files[0]){
+      this.file = <File>event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = e => this.imgSelect = reader.result;
+      reader.readAsDataURL(this.file);
+    }
+  }
+
   addProducto(event: Event) {
     if(this.form.value._id){
       this.productosService.putProductos(this.form.value).subscribe(res=>{
-        console.log(res);
+        console.log(this.form.value);
         this.toast.success('Producto actualizado', 'Notificacion',{
           timeOut: 1500
         });
@@ -85,6 +114,7 @@ export class OpProductosComponent implements OnInit {
     if(this.form){
       this.form.reset();
       this.getProductos();
+      this.imgSelect = null;
     }
   }
 

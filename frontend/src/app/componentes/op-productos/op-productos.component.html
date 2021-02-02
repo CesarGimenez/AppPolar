@@ -31,7 +31,9 @@
                             </div>
                             <div class="form-group col">
                                 <h6 class="card-subtitle mb-2 text-muted">Imagen</h6>
-                                <input formControlName="foto" type="file">
+                                <input formControlName="foto" (change)="imgSelected($event)" class="form-control" type="text" placeholder="Ingrese URL de imagen" 
+                                [(ngModel)]="productosService.selectedProducto.foto">
+                                <img alt="" [src]="productosService.selectedProducto.foto||'../../../assets/no-image.png'" class="card-img-top">
                             </div>
                             <div class="form-group col">
                                 <h6 class="card-subtitle mb-2 text-muted">Precio (*)</h6>
@@ -79,7 +81,7 @@
                         <th scope="col">Eliminar/Editar</th>
                     </thead>
                     <tbody>
-                        <tr scope="row" *ngFor= "let producto of productosService.Producto | paginate: {itemsPerPage: 10, currentPage: p}">
+                        <tr scope="row" *ngFor= "let producto of productosService.Producto | paginate: {itemsPerPage: 15, currentPage: p}">
                             <td>{{producto.nombre}}</td>
                             <td>{{producto.categoria}}</td>
                             <td>${{producto.precio}}</td>

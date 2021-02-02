@@ -16,6 +16,8 @@ import { OpProductosComponent } from './componentes/op-productos/op-productos.co
 import { SidebarComponent } from './componentes/sidebar/sidebar.component';
 import { ClientesComponent } from './componentes/clientes/clientes.component';
 import { LoginComponent } from './componentes/login/login.component';
+import { VentasComponent } from './componentes/ventas/ventas.component';
+import { CrearVentaComponent } from './componentes/ventas/crear-venta/crear-venta.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { LoginComponent } from './componentes/login/login.component';
     OpProductosComponent,
     SidebarComponent,
     ClientesComponent,
-    LoginComponent
+    LoginComponent,
+    VentasComponent,
+    CrearVentaComponent
   ],
   imports: [
     BrowserModule,

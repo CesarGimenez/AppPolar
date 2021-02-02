@@ -1,5 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+/* Estilo de fondo de la APP */
 body
 {
-    background: linear-gradient(rgba(0, 0, 0, .50) 0%, rgba(0, 0, 0, 0.50) 100%), url("./assets/image-asset.jpeg");
+    background: linear-gradient(rgba(0, 0, 0, .50) 0%, rgba(0, 0, 0, 0.50) 100%), url("./assets/image-asset.jpeg") no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
 }

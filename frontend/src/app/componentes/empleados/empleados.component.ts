@@ -4,6 +4,7 @@ import { FormControl, NgForm, FormGroup, Validators } from "@angular/forms";
 import { Empleado } from "../../models/empleado";
 import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-empleados',
@@ -14,9 +15,13 @@ import * as moment from 'moment';
 export class EmpleadosComponent implements OnInit {
 
   form: FormGroup;
+  public identidad;
+  public token;
 
-  constructor(public empleadoService: EmpleadoService, private toast: ToastrService) { 
+  constructor(public empleadoService: EmpleadoService, private toast: ToastrService, private router: Router) { 
     this.buildForm();
+    this.identidad = empleadoService.getIdentidad();
+    this.token = empleadoService.getToken();
   }
   filterEmpleado = '';
   p: number = 1;
@@ -29,6 +34,12 @@ export class EmpleadosComponent implements OnInit {
   public passmessage = '';
 
   ngOnInit(): void {
+    if(this.identidad.categoria !== 'Gerente'){
+      this.router.navigate(['inicio']);
+    }
+    if(!this.token){
+      this.router.navigate(['inicio']);
+    }
     this.getEmpleados();
   }
 
@@ -79,6 +90,7 @@ export class EmpleadosComponent implements OnInit {
   }
 
   editEmpleado(empleado: Empleado){
+    this.resetForm();
     this.empleadoService.selectedEmpleado = empleado;
     this.obtenerFecha();
     this.confirmPass();

@@ -43,6 +43,10 @@ export class EmpleadoService {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.post('http://localhost:3000/api/empleados/login', json, {headers:headers})
   }
+  Logout(){
+    let token = localStorage.removeItem('token');
+    return token;
+  }
   getToken():Observable<any>{
     let token = localStorage.getItem('token');
     if(token){

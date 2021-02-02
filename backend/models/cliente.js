@@ -6,6 +6,7 @@ const clienteschema = new Schema({
     dni: { type: String},
     email: { type: String},
     numero: { type: String},
+    ubicacion: { type: String},
     facebook: { type: String},
     instagram: { type: String},
     twitter: { type: String},

@@ -1,0 +1,113 @@
+<div class="wrapper row">
+    <app-sidebar></app-sidebar>
+    <div class="container">
+        <div class="header">
+            <h1 class="header-title text-light">Seccion de ventas</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item" routerLink="/ventas">Listado de ventas</li>
+                    <li class="breadcrumb-item" routerLink="/ventas/registrar">Nueva venta</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 form-group">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Datos para la venta</h5>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="error_cliente" class="alert alert-danger alert-dismissible" role="alert">
+                            <div class="alert-message">
+                                {{error_cliente}}
+                            </div>
+                            <button type="button" class="close" data-dismiss="alert" (click)="close_alertcliente()"
+                             aria-label="Close"><span aria-hidden="true">X</span></button>
+                        </div>
+                        <form #ventaform="ngForm" (ngSubmit)="onSubmit(ventaform)">
+                            <div class="d-flex d-flex-row">
+                                <h6 class="header-title col-lg-4">Vendedor</h6>
+                                <h6 class="header-title col-lg-4">Cliente</h6>
+                                <h6 class="header-title col-lg-4"></h6>
+                            </div>
+                            <div class="d-flex d-flex-row">
+                                <input type="text" class="col-lg-4 mr-2" readonly value="{{identidad.nombre}}">
+                                <select class="col-lg-3 mr-2" aria-placeholder="Seleccionar" #idcliente="ngModel" name="idcliente" [(ngModel)]="venta.idcliente" required>
+                                    <option value="" disabled selected>SELECCIONAR CLIENTE</option>
+                                    <option value="{{cliente._id}}" *ngFor="let cliente of clientes">{{cliente.nombre}}</option>
+                                </select>
+                                <button class="btn btn-primary mr-2" routerLink="/clientes">Nuevo cliente</button>
+                                <button class="btn btn-primary">registrar venta</button>
+                            </div>
+                        </form>  
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 form-group">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Agregar producto</h5>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="error_message" class="alert alert-danger alert-dismissible" role="alert">
+                            <div class="alert-message">
+                                {{error_message}}
+                            </div>
+                            <button type="button" class="close" data-dismiss="alert" (click)="close_alert()"
+                             aria-label="Close"><span aria-hidden="true">X</span></button>
+                        </div>
+                        <form #detalleform="ngForm" (ngSubmit)="save_detalle(detalleform)">
+                        <div class="d-flex d-flex-row">
+                            <h6 class="header-title col-lg-3">Productos</h6>
+                            <h6 class="header-title col-lg-3">Stock actual</h6>
+                            <h6 class="header-title col-lg-3">Cantidad</h6>
+                            <h6 class="header-title col-lg-3"></h6>
+                        </div>
+                        <div class="d-flex d-flex-row">
+                            <select class="col-lg-3 mr-2" aria-placeholder="Seleccionar" #idproducto="ngModel" required
+                            name="idproducto" [(ngModel)]="detalle.idproducto" (change)="get_data_producto($event.target.value)">
+                            <option value="" disabled selected>SELECCIONAR PRODUCTO</option>
+                            <option value="{{producto._id}}" *ngFor="let producto of productos">{{producto.nombre}}</option>
+                            </select>
+                            <input type="number" class="col-lg-3 mr-2" readonly value="{{stock}}" >
+                            <input type="number" class="col-lg-3 mr-2"  #cantidad="ngModel" 
+                            name="cantidad" [(ngModel)]="detalle.cantidad">
+                            <button class="btn btn-primary" type="submit">Agregar</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 form-group">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Detalle de venta</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Subtotal</th>
+                                <th scope="col">Eliminar</th>
+                            </thead>
+                            <tbody *ngFor = "let item of data_detalle; let idx = index">
+                                <tr scope="row">
+                                    <td>{{item.producto}}</td>
+                                    <td>${{item.precio}}</td>
+                                    <td>{{item.cantidad}}</td>
+                                    <td>${{(item.precio)*(item.cantidad)}}</td>
+                                    <td><button class="btn btn-primary mr-2"><i class="far fa-trash-alt" (click)="eliminar(idx,item.precio,item.cantidad)"></i></button></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <td><b>Total a pagar: $ {{total}}</b></td>
+                            </tfoot>
+                        </table>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

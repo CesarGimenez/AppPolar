@@ -22,7 +22,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/empleados',require('./routes/empleados.routes'));
 app.use('/api/productos',require('./routes/productos.routes'));
-app.use('/api/clientes',require('./routes/clientes.routes'))
+app.use('/api/clientes',require('./routes/clientes.routes'));
+app.use('/api/ventas',require('./routes/ventas.routes'));
 
 app.listen(app.get('port'), ()=> {
     console.log("Server on port", app.get('port'));

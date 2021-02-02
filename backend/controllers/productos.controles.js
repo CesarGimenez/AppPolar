@@ -8,15 +8,12 @@ productosctrl.getProductos = async (req, res) => {
 }
 
 productosctrl.createProducto = async(req,res)=>{
-    let imagen_path = req.files.foto.path;
-    let name = imagen_path.split('\\');
-    let imagen_name = name[2];
     const nuevoProducto = new productos({
         nombre: req.body.nombre,
         descripcion: req.body.descripcion,
         precio: req.body.precio,
         categoria: req.body.categoria,
-        foto: imagen_name,
+        foto: req.body.foto,
         stock: req.body.stock,
     });
     await nuevoProducto.save();
@@ -47,6 +44,7 @@ productosctrl.editProducto = async(req,res) =>{
         precio: req.body.precio,
         categoria: req.body.categoria,
         foto: req.body.foto,
+        stock: req.body.stock,
     }
     await productos.findByIdAndUpdate(req.params.id, {$set: productoupdate}, {new: true});
     res.json("Actualizado");

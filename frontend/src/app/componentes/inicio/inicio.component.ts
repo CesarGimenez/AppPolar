@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmpleadoService } from 'src/app/services/empleado.service';
 
 @Component({
   selector: 'app-inicio',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
-  constructor() { }
+  public identidad;
+  public token;
+
+  constructor(private empleadoService: EmpleadoService) { 
+    this.identidad = empleadoService.getIdentidad();
+    this.token = empleadoService.getToken();
+   }
 
   ngOnInit(): void {
   }
