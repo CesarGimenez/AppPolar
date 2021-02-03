@@ -15,6 +15,9 @@ export class VentasService {
   save_venta(data){
     return this.http.post('http://localhost:3000/api/ventas',data);
   }
+  getVenta(id){
+    return this.http.get('http://localhost:3000/api/ventas/'+id);
+  }
 }
 
 

@@ -20,9 +20,13 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private toast: ToastrService) { 
     this.user = new Empleado();
+    this.token = empladoService.getToken();
    }
 
   ngOnInit(): void {
+    if(this.token){
+      this.router.navigate(['inicio']);
+    }
   }
 
   close_alert(){

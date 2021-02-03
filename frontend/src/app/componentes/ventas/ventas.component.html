@@ -23,11 +23,11 @@
                         <th scope="col">Opciones</th>
                     </thead>
                     <tbody>
-                        <tr scope="row" *ngFor= "let venta of ventaslist | paginate: {itemsPerPage: 15, currentPage: p}">
+                        <tr scope="row" *ngFor= "let venta of ventaslist | paginate: {itemsPerPage: 10, currentPage: p}">
                             <td>{{venta.idcliente.nombre}}</td>
                             <td>{{venta.fecha | date: 'MMM d, y, h:mm a'}}</td>
                             <td>{{venta.idempleado.nombre}} ({{venta.idempleado.categoria}})</td>
-                            <td><button class="btn btn-primary">Detalle de venta</button></td>
+                            <td><button class="btn btn-primary" routerLink="/ventas/{{venta._id}}">Detalle de venta</button></td>
                         </tr>
                     </tbody>
                 </table>

@@ -1,28 +1,72 @@
 <div class="wrapper row">
     <app-sidebar *ngIf="token"></app-sidebar>
         <div class="container">
-         <div class="textbox">
-             <div class="col-lg-6">
-                <h2 class="text-light">Taste the feeling</h2>
-                <p class="text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, libero? Cum at, atque blanditiis
-                    quaerat veniam aut laboriosam, quasi repellat, animi sapiente dolor ipsa! Rerum necessitatibus dicta
-                    illo vel tenetur?</p>
-                <a href="#" class="btn btn-primary">Learn More</a> 
-             </div>
-                
+            <div class="row">
+                <div class="textbox row col-lg-12">
+                    <div class="col-lg-6">
+                       <h1 class="text-light">Estamos cerca de ti</h1>
+                        <div class="card p-3" id="card">
+                           <h5>Nuestro Quehacer</h5>
+                           <p class="" id="parrafo">La actividad cotidiana de Empresas Polar es producir, distribuir y 
+                               ofertar marcas de alimentos y bebidas que satisfagan las necesidades y expectativas de los consumidores, 
+                               con la mejor calidad y la mejor relación precio-valor. <br>
+       
+                               <q>En Empresas Polar, abordamos</q></p>
+                               <button class="btn btn-primary m-auto" (click)="Ocultar()" id="boton">Ver menos</button>
+                        </div>
+                        <div class="card p-3 mt-3" id="card1">
+                           <h5>Razón de Ser</h5>
+                           <p class="" id="parrafo1">En Empresas Polar el sentido de nuestro trabajo es contribuir a la calidad de la vida
+                                cotidiana de los venezolanos y sus familias, por medio de una amplia y accesible oferta de excelentes marcas 
+                                de alimentos y bebidas, con la mejor relación precio-valor. Cada uno de nosotros trabaja con pasión aportando 
+                                al bien de las personas, de las comunidades y del país. Nuestro trabajo está al servicio del bien individual y común, 
+                                en la medida en que cumplimos con los diferentes grupos relacionados y participamos solidariamente con los sectores 
+                                más vulnerables de la población. <br>
+       
+                               </p>
+                               <button class="btn btn-primary m-auto" (click)="Ocultar2()" id="boton1">Ver menos</button>
+                        </div>
+                        <div class="d-flex flex-row">
+                           <ul class="icon d-flex flex-row mt-3">
+                               <li><a href="#"><i class="fab fa-facebook-f mr-2"></i></a></li>
+                               <li><a href="#"><i class="fab fa-twitter mr-2"></i></a></li>
+                               <li><a href="#"><i class="fab fa-instagram mr-2"></i></a></li>
+                               <li><a href="#"><i class="fab fa-whatsapp mr-2"></i></a></li>
+                               <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                           </ul>
+                       </div>
+                    </div> 
+                    <div class="col-lg-6">
+                        <div class="imgbox">
+                            <swiper
+                            [slidesPerView]="2"
+                            [spaceBetween]="10"
+                            [grabCursor] = true
+                            [loop] = true
+                            effect="cube"
+                            (swiper)="onSwiper($event)"
+                            (slideChange)="onSlideChange()"
+                            [navigation]="true"
+                          >
+                            <ng-template swiperSlide class="swiperSlide"><img src="../../../assets/harinapan.png"></ng-template>
+                            <ng-template swiperSlide class="swiperSlide img"><img src="../../../assets/toddy.png"></ng-template>
+                            <ng-template swiperSlide class="swiperSlide"><img src="../../../assets/mavessa.png"></ng-template>
+                            <ng-template swiperSlide class="swiperSlide"><img src="../../../assets/pepsi.png"></ng-template>
+                            <ng-template swiperSlide class="swiperSlide"><img src="../../../assets/minalba (1).png"></ng-template>
+                            <ng-template swiperSlide class="swiperSlide"><img src="../../../assets/dogourmet.png"></ng-template>
+                            <ng-template swiperSlide class="swiperSlide"><img src="../../../assets/pastaprimor.png"></ng-template>
+                            <ng-template swiperSlide class="swiperSlide"><img src="../../../assets/migurt.png"></ng-template>
+                            <ng-template swiperSlide class="swiperSlide"><img src="../../../assets/quaker.png"></ng-template>
+                            <ng-template swiperSlide class="swiperSlide"><img src="../../../assets/yukery.png"></ng-template>
+                            <ng-template swiperSlide class="swiperSlide"><img src="../../../assets/sangriaros.png"></ng-template>
+                          </swiper>
+                        </div>
+                    </div>  
+               </div>
+            
+            
+            </div>
         </div>
-        <div class="imgbox">
-                
-        </div>
-        <div class="d-flex flex-row">
-            <ul class="icon d-flex flex-row">
-                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
-            </ul>
-        </div>
-    </div>
 </div>
 
            

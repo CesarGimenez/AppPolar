@@ -41,18 +41,20 @@ function registrar(req, res){
 
 function getVenta(req,res){
     let id = req.params['id'];
-    Venta.findById(id,(err,data_venta)=>{
+    Venta.findById(id).populate('idcliente').populate('idempleado').exec((err,data_venta)=>{
         if(data_venta){
-            Detalleventa.find({venta:id},(err,data_detalle)=>{
+            Detalleventa.find({venta:data_venta._id}).populate('idproducto').exec({venta:id},(err,data_detalle)=>{
                 if(data_detalle){
                     res.send({
-                        venta: data_venta,
-                        detalles: data_detalle
+                        data: {
+                            venta: data_venta,
+                            detalles: data_detalle
+                        }
                     })
                 }
             });
         }
-    })
+    });
 }
 
 function listarVentas(req,res){

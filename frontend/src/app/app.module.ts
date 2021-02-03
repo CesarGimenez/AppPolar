@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { SwiperModule } from "swiper/angular";
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,6 +19,7 @@ import { ClientesComponent } from './componentes/clientes/clientes.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { VentasComponent } from './componentes/ventas/ventas.component';
 import { CrearVentaComponent } from './componentes/ventas/crear-venta/crear-venta.component';
+import { DetalleVentaComponent } from './componentes/ventas/detalle-venta/detalle-venta.component';
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { CrearVentaComponent } from './componentes/ventas/crear-venta/crear-vent
     ClientesComponent,
     LoginComponent,
     VentasComponent,
-    CrearVentaComponent
+    CrearVentaComponent,
+    DetalleVentaComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import { CrearVentaComponent } from './componentes/ventas/crear-venta/crear-vent
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     AppRoutingModule,
+    SwiperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

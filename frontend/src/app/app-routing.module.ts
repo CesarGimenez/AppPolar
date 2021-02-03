@@ -8,6 +8,7 @@ import { ClientesComponent } from './componentes/clientes/clientes.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { VentasComponent } from "./componentes/ventas/ventas.component";
 import { CrearVentaComponent } from "./componentes/ventas/crear-venta/crear-venta.component";
+import { DetalleVentaComponent } from './componentes/ventas/detalle-venta/detalle-venta.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path: 'clientes', component: ClientesComponent},
   {path: 'login', component: LoginComponent},
   {path: 'ventas', component: VentasComponent},
-  {path: 'ventas/registrar', component: CrearVentaComponent}
+  {path: 'ventas/registrar', component: CrearVentaComponent},
+  {path: 'ventas/:id', component: DetalleVentaComponent}
 ];
 
 @NgModule({

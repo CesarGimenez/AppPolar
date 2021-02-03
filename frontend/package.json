@@ -22,7 +22,10 @@
     "moment": "^2.29.1",
     "ngx-pagination": "^5.0.0",
     "ngx-toastr": "^13.2.0",
+    "pdfmake": "^0.1.70",
+    "pdfmake-wrapper": "^2.1.1",
     "rxjs": "~6.6.0",
+    "swiper": "^6.4.10",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },

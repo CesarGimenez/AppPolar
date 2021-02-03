@@ -1,0 +1,83 @@
+.Ocultar {
+    visibility: hidden;
+}
+.Disminuir{
+    height: 100px;
+}
+.Subir{
+    transform: translateY(-130px);
+}
+.Subir1{
+    transform: translateY(-230px);
+}
+.card{
+    box-shadow: 5px 5px #888888;
+}
+.icon {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon li {
+    list-style: none;
+}
+.icon li a{
+    text-decoration: none;
+}
+.icon li a .fab{
+    display: inline-block;
+    margin-left: 15px;
+    background: #222;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: 0.2s ease-in-out;
+}
+.fab{
+    font-size: 1.5em;
+    text-decoration: none;
+    color: #ffffff;
+}
+.icon li a .fab:hover{
+    transform: translateY(-10px);
+}
+.icon li:nth-child(1) a .fab:hover{
+    background: rgb(21, 105, 201);
+}
+.icon li:nth-child(2) a .fab:hover{
+    background: rgb(30, 183, 210);
+}
+.icon li:nth-child(3) a .fab:hover{
+    background: rgb(236, 37, 80);
+}
+.icon li:nth-child(4) a .fab:hover{
+    background: rgb(4, 121, 19);
+}
+.icon li:nth-child(5) a .fab:hover{
+    background: rgb(224, 5, 5);
+}
+.imgbox{
+    margin-top: 20px;
+}
+.swiper-container{
+    width: 100%;
+    padding: 50px;
+    padding-bottom: 50px;
+}
+.swiper-slide{
+    background-position: center;
+    background-size: cover;
+    width: 180px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+}
+.swiper-slide img{
+    position: absolute;
+    bottom: 0;
+    max-height: 100%;
+}
