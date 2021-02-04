@@ -57,7 +57,7 @@ export class DetalleVentaComponent implements OnInit {
       title: 'Factura: ' + this.id,
   });
     pdf.header('Empresas Polar C.A');
-    pdf.add('Codigo de venta: ' + this.id + '  |   Fecha: ' + this.fecha);
+    pdf.add('Codigo de venta: ' + this.id + '  |   Fecha: ' + new Date(this.fecha).toLocaleString());
     pdf.add('Cliente: '+ this.venta.idcliente.nombre + '  |  Direccion. entrega: ' + this.venta.idcliente.ubicacion+ '  |  CI/RIF: ' + this.venta.idcliente.dni);
 
     pdf.add(
@@ -67,6 +67,8 @@ export class DetalleVentaComponent implements OnInit {
     );
 
     pdf.add(this.createTable(null));
+
+    pdf.add('-------------------------------------------------------------------------------------------Total pagado: $ ' + this.venta.total);
 
     pdf.create().open();
   }

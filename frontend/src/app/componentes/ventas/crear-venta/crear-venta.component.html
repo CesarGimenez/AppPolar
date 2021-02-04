@@ -95,14 +95,14 @@
                             <tbody *ngFor = "let item of data_detalle; let idx = index">
                                 <tr scope="row">
                                     <td>{{item.producto}}</td>
-                                    <td>${{item.precio}}</td>
+                                    <td>{{item.precio | currency}}</td>
                                     <td>{{item.cantidad}}</td>
-                                    <td>${{(item.precio)*(item.cantidad)}}</td>
+                                    <td>{{(item.precio)*(item.cantidad) | currency}}</td>
                                     <td><button class="btn btn-primary mr-2"><i class="far fa-trash-alt" (click)="eliminar(idx,item.precio,item.cantidad)"></i></button></td>
                                 </tr>
                             </tbody>
                             <tfoot>
-                                <td><b>Total a pagar: $ {{total}}</b></td>
+                                <td><b>Total a pagar: {{total | currency}}</b></td>
                             </tfoot>
                         </table>
                         </div>

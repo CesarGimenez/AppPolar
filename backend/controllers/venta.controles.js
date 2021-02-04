@@ -6,6 +6,7 @@ function registrar(req, res){
     let venta = new Venta();
     venta.idcliente = req.body.idcliente;
     venta.idempleado = req.body.idempleado;
+    venta.total = req.body.total;
 
     venta.save((err,venta_save)=>{
         if(venta_save){
@@ -77,10 +78,22 @@ function detalles_venta(req,res){
         }
     })
 }
+function fechasVenta(req,res){
+    let fecha1 = req.body.fecha1;
+    let fecha2 = req.body.fecha2;
+    Venta.find({$and:[{"fecha":{$gte:fecha1}},{"fecha":{$lte:fecha2}}]}).populate('idcliente').populate('idempleado').exec((err,data)=>{
+        if(data){
+            res.send(data);
+        } else {
+            res.sed('No hay ventas');
+        }
+    });
+}
 
 module.exports = {
     registrar,
     getVenta,
     listarVentas,
     detalles_venta,
+    fechasVenta
 }

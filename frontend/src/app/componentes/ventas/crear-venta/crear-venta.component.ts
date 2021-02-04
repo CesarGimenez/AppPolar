@@ -102,7 +102,8 @@ export class CrearVentaComponent implements OnInit {
         let data = {
         idcliente :ventaform.value.idcliente,
         idempleado: this.identidad._id,
-        detalles: this.data_detalle
+        detalles: this.data_detalle,
+        total: this.total,
       }
       this.ventaService.save_venta(data).subscribe(
         response =>{

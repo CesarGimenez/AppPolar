@@ -18,6 +18,9 @@ export class VentasService {
   getVenta(id){
     return this.http.get('http://localhost:3000/api/ventas/'+id);
   }
+  getVentasFecha(data){
+    return this.http.post('http://localhost:3000/api/ventas/fechas',data);
+  }
 }
 
 

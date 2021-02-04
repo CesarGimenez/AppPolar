@@ -17,26 +17,26 @@
                         <form [formGroup]="form" (ngSubmit)="addEmpleado($event)">
                                 <div class="form-group col s12">
                                     
-                                    <h6 class="card-subtitle mb-2 text-muted">Nombre (*)</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user-tie"></i> Nombre (*)</h6>
                                     <input class="form-control" type="text" formControlName="nombre" placeholder="Ingresar nombre" [(ngModel)]="empleadoService.selectedEmpleado.nombre">
                                     <small *ngIf="form.get('nombre').hasError('maxlength')" class="text-danger">El nombre es muy largo <br></small>
                                     <small *ngIf="form.get('nombre').hasError('pattern')" class="text-danger">No se admiten caracteres numericos ni especiales</small>
                                 </div>
                                 <div class="form-group col s12">
-                                    <h6 class="card-subtitle mb-2 text-muted">Fecha de nacimiento</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-calendar-week"></i> Fecha de nacimiento</h6>
                                     <input type="date" formControlName="fechanac" id="fecha" [(ngModel)]="empleadoService.selectedEmpleado.fechanac"
                                     (change)="obtenerFecha()"><br>
                                     <small *ngIf="!fechavalida" class="text-danger">{{message}}</small>
                                 </div>
                                 <div class="form-group col s12">
-                                    <h6 class="card-subtitle mb-2 text-muted">Email (*)</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-at"></i> Email (*)</h6>
                                     <input class="form-control" type="email" formControlName="email" placeholder="Ingresar email" [(ngModel)]="empleadoService.selectedEmpleado.email" 
                                     (keyup)="emailDuplicado()">
                                     <small *ngIf="!emailvalido" class="text-danger">{{emailduplicado}} <br></small>
                                     <small *ngIf="form.get('email').hasError('email') && form.get('email').touched" class="text-danger">El email no es valido</small>
                                 </div>
                                 <div class="form-group col">
-                                    <h6 class="card-subtitle mb-2 text-muted">Contraseña (*)</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-key"></i> Contraseña (*)</h6>
                                     <input class="form-control" type="password" (keyup)="confirmPass()" formControlName="pass" placeholder="Ingresar contraseña">
                                     <small *ngIf="form.get('pass').hasError('minlength') && form.get('pass').touched" class="text-danger">La contraseña debe ser minimo de 6 caracteres <br></small>
                                     <input class="form-control" type="password" (keyup)="confirmPass()" formControlName="confirmpass" placeholder="Confirme contraseña">
@@ -51,7 +51,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col s12">
-                                    <h6 class="card-subtitle mb-2 text-muted">Genero</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-genderless"></i> Genero</h6>
                                     <input type="radio" name="genero" formControlName="genero" value="masculino" checked [(ngModel)]="empleadoService.selectedEmpleado.genero"> Masculino<br>
                                     <input type="radio" name="genero" formControlName="genero" value="femenino"> Femenino<br>
                                     <input type="radio" name="genero" formControlName="genero" value="otro"> Otro

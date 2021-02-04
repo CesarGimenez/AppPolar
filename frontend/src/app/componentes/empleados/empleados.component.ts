@@ -122,6 +122,7 @@ export class EmpleadosComponent implements OnInit {
     let fechanacimiento = new Date(this.form.value.fechanac);
     let edad1 = ahora.getFullYear() - fechanacimiento.getFullYear();
     console.log(fechanacimiento);
+    console.log(fechanacimiento.toISOString());
 
     if(edad1 <= 0){
         this.message = "fecha no valida";

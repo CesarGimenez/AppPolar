@@ -56,15 +56,19 @@
                                 <th scope="col" class="text-center">Cantidad</th>
                                 <th scope="col" class="text-center">Subtotal</th>
                             </thead>
-                            <tbody *ngFor = "let item of detalleventa">
-                                <tr scope="row">
+                            <tbody>
+                                <tr scope="row" *ngFor = "let item of detalleventa"> 
                                     <td class="text-center">{{item.idproducto.nombre}}</td>
-                                    <td class="text-center">${{item.idproducto.precio}}</td>
+                                    <td class="text-center">{{item.idproducto.precio | currency}}</td>
                                     <td class="text-center">{{item.cantidad}}</td>
-                                    <td class="text-center">${{(item.idproducto.precio)*(item.cantidad)}}</td>
+                                    <td class="text-center">{{(item.idproducto.precio)*(item.cantidad) | currency}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-right"><b>Total pagado:</b></td>
+                                    <td class="text-center"><b>{{venta.total | currency}}</b></td>
                                 </tr>
                             </tbody>
-                            <tfoot>
+                            <tfoot class="d-flex d-flex-row">
                                 <button type="button" class="btn btn-danger mt-3" (click)="generatePDF()"><i class="fas fa-file-pdf"></i> Generar PDF </button>
                             </tfoot>
                         </table>
